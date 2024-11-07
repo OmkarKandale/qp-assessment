@@ -1,5 +1,5 @@
 import app from "./app";
-import { checkDatabaseConnection } from "./config/database";
+import { checkDatabaseConnection, initializeDatabase } from "./config/database";
 
 const PORT = process.env.PORT || 3333;
 
@@ -11,6 +11,8 @@ const startServer = async () => {
 			console.error("Unable to connect to the database. Exiting...");
 			process.exit(1);
 		}
+
+		await initializeDatabase();
 
 		app.listen(PORT, () => {
 			console.log(`Server running on port ${PORT}`);

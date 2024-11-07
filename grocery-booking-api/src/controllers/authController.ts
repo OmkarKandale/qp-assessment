@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { hash, compare } from "bcrypt";
+import { hash, compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import pool from "../config/database";
 import { AppError } from "../types";
