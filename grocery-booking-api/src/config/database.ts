@@ -1,3 +1,5 @@
+import * as fs from "fs";
+import * as path from "path";
 import { Pool, PoolConfig } from "pg";
 
 const config: PoolConfig = {
@@ -31,6 +33,20 @@ export const checkDatabaseConnection = async (): Promise<boolean> => {
 	} catch (error) {
 		console.error("Database connection error:", error);
 		return false;
+	}
+};
+
+export const initializeDatabase = async () => {
+	try {
+		const sql = fs.readFileSync(
+			path.join(__dirname, process.env.DB_SCRIPT || "../init.sql"),
+			"utf8"
+		);
+		await pool.query(sql);
+		console.log("Database initialized successfully.");
+	} catch (error) {
+		console.error("Error initializing database:", error);
+		throw error;
 	}
 };
 
