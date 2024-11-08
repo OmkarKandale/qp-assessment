@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "node dist/server.js",
 		"dev": "nodemon src/server.ts",
-		"build": "tsc && cp -r src/init.sql dist/init.sql",
+		"build": "tsc && copyfiles -u 1 src/**/*.sql dist",
 		"typecheck": "tsc --noEmit"
 	},
 	"keywords": [],
@@ -27,6 +27,7 @@
 		"@types/jsonwebtoken": "^9.0.7",
 		"@types/node": "^22.8.6",
 		"@types/pg": "^8.11.10",
+		"copyfiles": "^2.4.1",
 		"nodemon": "^3.1.7",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.6.3"
